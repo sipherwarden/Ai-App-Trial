@@ -1,0 +1,2 @@
+import { NextResponse } from 'next/server'; import { signInSchema } from '@/lib/schemas'; import { prisma } from '@/lib/prisma';
+export async function POST(req:Request){try{const d=signInSchema.parse(await req.json()); const g=await prisma.guest.create({data:{...d,children:undefined,prayerRequest:undefined,children:{create:d.children||[]},prayerRequests:d.prayerRequest?{create:[{request:d.prayerRequest}]}:undefined}});return NextResponse.json({id:g.id});}catch{return NextResponse.json({error:'Invalid submission'},{status:400});}}
