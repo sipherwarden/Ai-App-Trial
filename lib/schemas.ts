@@ -1,0 +1,6 @@
+import { z } from 'zod';
+export const signInSchema=z.object({firstName:z.string().min(1),lastName:z.string().min(1),phone:z.string().optional(),email:z.string().email().optional().or(z.literal('')),address:z.string().optional(),city:z.string().optional(),state:z.string().optional(),zip:z.string().optional(),firstTimeVisitor:z.coerce.boolean(),adultsCount:z.coerce.number().int().min(1),childrenCount:z.coerce.number().int().min(0),children:z.array(z.object({name:z.string().min(1),age:z.string().min(1)})).optional(),preferredContactMethod:z.enum(['Call','Text','Email']).optional(),wantsContact:z.coerce.boolean(),heardAboutUs:z.string().optional(),serviceAttending:z.string().optional(),prayerRequest:z.string().optional(),permissionToContact:z.coerce.boolean()});
+export const returningSchema=z.object({firstName:z.string().min(1),lastName:z.string().min(1),phoneOrEmail:z.string().min(1),serviceAttending:z.string().min(1),updates:z.string().optional(),prayerRequest:z.string().optional()});
+export const loginSchema=z.object({email:z.string().email(),password:z.string().min(8)});
+export const noteSchema=z.object({note:z.string().min(1),status:z.string().min(1)});
+export const statusSchema=z.object({followUpStatus:z.string().min(1),lastContactedAt:z.string().optional()});

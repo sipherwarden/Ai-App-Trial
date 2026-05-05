@@ -1,0 +1,1 @@
+import Link from 'next/link'; export default ()=> <main className='min-h-screen bg-navy text-white flex flex-col items-center justify-center'><h1 className='text-5xl font-bold'>Trinity Assembly of God</h1><p className='text-2xl mt-4'>Welcome! We’re glad you’re here.</p><Link href='/sign-in' className='btn-primary text-2xl mt-8'>Guest Sign-In</Link></main>;

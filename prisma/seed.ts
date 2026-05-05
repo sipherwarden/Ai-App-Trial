@@ -1,0 +1,3 @@
+import { PrismaClient } from '@prisma/client'; import bcrypt from 'bcryptjs'; const p=new PrismaClient();
+async function main(){const hash=await bcrypt.hash('ChangeMe123!',12); await p.adminUser.upsert({where:{email:'admin@trinityguestconnect.local'},update:{},create:{email:'admin@trinityguestconnect.local',passwordHash:hash,name:'Dev Admin'}}); await p.guest.create({data:{firstName:'Sarah',lastName:'Miller',email:'sarah@example.com',firstTimeVisitor:true,adultsCount:2,childrenCount:1,wantsContact:true,permissionToContact:true,serviceAttending:'Sunday Morning Worship',children:{create:[{name:'Eli',age:'8'}]},prayerRequests:{create:[{request:'Prayer for family health'}]}}});}
+main().finally(()=>p.$disconnect());
